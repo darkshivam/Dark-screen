@@ -694,7 +694,7 @@ const CAT_EMO={social:'💬',game:'🎮',study:'📚',entertain:'🎬',other:'�
 // ━━━━ STATE ━━━━
 function def(){return{streak:0,best:0,start:null,lastCI:null,ciDates:[],daily:{},
   sessionStart:Date.now(),screenLimit:5,
-  profile:{name:'Dark Shivam',username:'@darkshivam',age:'',city:'',goal:'NoFap + Study',target:'6',bio:'Apna goal set karo aur strong raho! 💪',avatar:'😎'},
+  profile:{name:'your name',username:'@name',age:'',city:'',goal:'NoFap + Study',target:'6',bio:'kaisa laga app! 💪',avatar:'😎'},
   permGranted:false};}
 function loadS(){try{const s=JSON.parse(localStorage.getItem('ms_v5')||'null');
   if(!s)return def();
@@ -725,7 +725,7 @@ function initApp(){
   const d=new Date(),h=d.getHours();
   document.getElementById('hDate').textContent=d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
   document.getElementById('dayPart').textContent=h<12?'Morning':h<17?'Afternoon':'Evening';
-  document.getElementById('greetSub').textContent=h<12?'Subah ki shuruat, chalo strong raho! 🌅':h<17?'Dopahar ka update check karo ☀️':'Din ka hisaab lagao 🌙';
+  document.getElementById('greetSub').textContent=h<12?'Subah ki shuruat, chal padhai kar! 🌅':h<17?'Dopahar ka update check karo ☀️':'Din ka hisaab lagao 🌙';
   const q=QT[Math.floor(Math.random()*QT.length)];
   document.getElementById('qTxt').textContent=q[0];
   document.getElementById('qAuth').textContent=q[1]?`— ${q[1]}`:'— MindShift';
@@ -795,7 +795,7 @@ function grantPerm(){
   state.sessionStart=Date.now();
   saveS();
   showPermBanner();
-  showToast('✅ Permission granted! Tracking shuru...');
+  showToast('✅ Permission granted! Tracking start..');
   updateScreenTime();
 }
 
@@ -878,7 +878,7 @@ function renderApps2(t){
 function renderSessions2(t){
   const el=document.getElementById('sessionList');
   if(!t.sessions||!t.sessions.length){
-    el.innerHTML='<div style="font-size:12px;color:var(--m2);text-align:center;padding:8px 0;">Koi session nahi. Padhai karo! 💪</div>';return;
+    el.innerHTML='<div style="font-size:12px;color:var(--m2);text-align:center;padding:8px 0;">Koi plan nahi. Padhai kar be! 💪</div>';return;
   }
   el.innerHTML=t.sessions.map(s=>`
     <div class="study-session-item">
@@ -1068,17 +1068,17 @@ function doCheckIn(){
   if(state.streak>state.best)state.best=state.streak;
   if(!state.ciDates.includes(t))state.ciDates.push(t);
   saveS();closeM('checkIn');render();buildCal();renderProf();
-  showToast('🔥 '+state.streak+' din! Khatarnak bhai!');
+  showToast('🔥 '+state.streak+' din! Khatarnak bro!');
 }
 function doReset(){
   state.streak=0;state.start=null;state.lastCI=null;
-  saveS();closeM('reset');render();buildCal();renderProf();showToast('Dobara shuru karo. You got this! 💪');
+  saveS();closeM('reset');render();buildCal();renderProf();showToast('Try again. You got this! 💪');
 }
 function saveFF(){
   const v=parseFloat(document.getElementById('ffH').value);
   if(isNaN(v)||v<0){showToast('Valid hours daalo');return;}
   getToday().ff=v;saveS();closeM('freefire');render();
-  showToast(v>2?`⚠️ ${v}h FF — kuch limit karo!`:`🎮 FF: ${v}h logged`);
+  showToast(v>2?`⚠️ ${v}h FF — controll baby!`:`🎮 FF: ${v}h logged`);
   document.getElementById('ffH').value='';
 }
 function saveApp2(){
@@ -1096,14 +1096,14 @@ function saveApp2(){
 function saveStudy2(){
   const sub=document.getElementById('subNm2').value.trim();
   const mn=parseInt(document.getElementById('subMn2').value);
-  if(!sub||isNaN(mn)||mn<5){showToast('Subject aur valid time daalo');return;}
+  if(!sub||isNaN(mn)||mn<5){showToast('Type Subject and valid time');return;}
   const t=getToday();
   const now=new Date();
   t.sessions.push({subject:sub,mins:mn,time:now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})});
   t.study=parseFloat((t.study+mn/60).toFixed(2));
   saveS();closeM('addStudy');render();
   document.getElementById('subNm2').value='';document.getElementById('subMn2').value='';
-  showToast(`📚 ${sub} — ${mn}m done! Shabash! 🎯`);
+  showToast(`📚 ${sub} — ${mn}m done! good job! 🎯`);
 }
 function saveLimit(){
   const v=parseInt(document.getElementById('limH').value);
@@ -1112,7 +1112,7 @@ function saveLimit(){
   showToast(`⏱️ Limit set: ${v}h/day`);
   document.getElementById('limH').value='';
 }
-function clearAll(){if(confirm('Saara data permanently delete? Wapas nahi aayega.')){localStorage.removeItem('ms_v5');location.reload();}}
+function clearAll(){if(confirm('All data permanently delete? Wapas nahi aayega.')){localStorage.removeItem('ms_v5');location.reload();}}
 
 // ━━━━ PAGE NAV ━━━━
 function showPage(id){
